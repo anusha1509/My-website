@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Birthday Wishes App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app" role="application" aria-label="Birthday wishes app">
+  <h1>🎂 Surprise — Birthday Wishes</h1>
+  <p class="lead">Click the button to reveal wishes. Then blow the candle (or click it) to celebrate!</p>
+
+  <div class="stage">
+    <div class="card">
+      <div class="cake" id="cake">
+        <div class="layer bottom"></div>
+        <div class="layer top"></div>
+        <div class="candles" id="candles">
+          <div class="candle" tabindex="0"><div class="flame"></div></div>
+          <div class="candle" tabindex="0"><div class="flame"></div></div>
+          <div class="candle" tabindex="0"><div class="flame"></div></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="show-wishes">Show Wishes</button>
+        <button id="blow" disabled>Blow Candle</button>
+        <button id="final" disabled>Final Wishes</button>
+        <button id="enable-mic">Enable Mic (optional)</button>
+      </div>
+
+      <div class="final-area small">
+        Tip: Click a candle or use the Blow button. On mobile the mic can detect a real blow.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <div class="typed" id="typedText"></div>
+    <div class="modal-buttons">
+      <button id="modal-close">Close</button>
+    </div>
+  </div>
+</div>
+
+<div id="balloon-area"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
