@@ -1,0 +1,60 @@
+const showBtn = document.getElementById("show-wishes");
+const blowBtn = document.getElementById("blow");
+const finalBtn = document.getElementById("final");
+const modal = document.getElementById("modal");
+const typedText = document.getElementById("typedText");
+const closeModal = document.getElementById("modal-close");
+const flames = document.querySelectorAll(".flame");
+const balloonsArea = document.getElementById("balloon-area");
+
+let extinguished = false;
+
+function typeWriter(text, element, speed = 30) {
+  element.textContent = "";
+  let i = 0;
+  const timer = setInterval(() => {
+    element.textContent += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
+}
+
+showBtn.addEventListener("click", () => {
+  modal.classList.add("show");
+  typeWriter("🎉 Happy Birthday! 🎂\nMay your day be filled with joy, laughter, and love!", typedText);
+  blowBtn.disabled = false;
+});
+
+closeModal.addEventListener("click", () => {
+  modal.classList.remove("show");
+});
+
+function extinguishCandles() {
+  if (extinguished) return;
+  extinguished = true;
+  flames.forEach(f => f.classList.add("extinguished"));
+  blowBtn.disabled = true;
+  finalBtn.disabled = false;
+  createBalloons();
+}
+
+blowBtn.addEventListener("click", extinguishCandles);
+document.querySelectorAll(".candle").forEach(c => c.addEventListener("click", extinguishCandles));
+
+finalBtn.addEventListener("click", () => {
+  modal.classList.add("show");
+  typeWriter("💖 To my Forever Favourite Person,ur smile, ur eyes, ur laugh, ur presence just everything about you i love U.totally perfect you life, you mean a In my eyes you are are my world, lot to me. I will never let you go because I know my life won't be complete.Once again Happiest Birthday My Katte...!", typedText);
+});
+
+function createBalloons(count = 20) {
+  const colors = ["#FF6B6B", "#FFD93D", "#6BCB77", "#4D96FF"];
+  for (let i = 0; i < count; i++) {
+    const balloon = document.createElement("div");
+    balloon.className = "balloon";
+    balloon.style.left = `${Math.random() * 100}%`;
+    balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+    balloon.style.animationDuration = `${5 + Math.random() * 4}s`;
+    balloonsArea.appendChild(balloon);
+    balloon.addEventListener("animationend", () => balloon.remove());
+  }
+}
